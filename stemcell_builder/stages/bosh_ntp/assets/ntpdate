@@ -1,6 +1,4 @@
 #!/bin/sh
-#
-# Copyright (c) 2009-2012 VMware, Inc.
 
 BOSH=/var/vcap/bosh
 NTP_SERVER_FILE=$BOSH/etc/ntpserver
