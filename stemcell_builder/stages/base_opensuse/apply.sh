@@ -49,6 +49,7 @@ echo 'gpgcheck = on' >> /etc/zypp/zypp.conf
 touch ${chroot}/etc/gshadow
 
 # This is required for the bosh_go_agent stage
+## Then it should be in bosh_go_agent.
 mkdir -p $chroot/etc/service/
 
 run_in_chroot $chroot "

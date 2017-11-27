@@ -18,6 +18,9 @@ echo -n $stemcell_infrastructure > $chroot/var/vcap/bosh/etc/infrastructure
 #
 # This workaround should be reverted once we can go back to the latest version of
 # the bosh-agent submodule. See
+
+
+## It still doesn't. We should make a decision here.
 os="${stemcell_operating_system}"
 if [ "${os}" == "rhel" ] || [ "${os}" == "photonos" ] ; then
   os="centos"

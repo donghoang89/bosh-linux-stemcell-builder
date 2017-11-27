@@ -13,10 +13,14 @@ chmod 0000 $chroot/etc/shadow
 chown root:root $chroot/etc/shadow
 
 # only for CentOS
+## Why is it not in an if block, then
+## giroud has these same perms
+## centos 7.4 docker image has these perms
 chmod 0755 $chroot/lib
 chmod 0755 $chroot/lib64
 
 # remove setuid binaries - except su/sudo (sudoedit is hardlinked)
+## This removes the setuid *bit*, not the binary itself.
 run_in_bosh_chroot $chroot "
 find / -xdev -perm /ug=s -type f \
   -not \( -name sudo -o -name su -o -name sudoedit \) \

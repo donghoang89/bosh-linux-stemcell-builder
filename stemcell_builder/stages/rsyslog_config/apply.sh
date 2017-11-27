@@ -2,6 +2,8 @@
 
 set -e
 
+## TODO: audit this whole thing. Does this configuration work under systemd in
+## the same way as it does under upstart?
 base_dir=$(readlink -nf $(dirname $0)/../..)
 source $base_dir/lib/prelude_apply.bash
 source $base_dir/lib/prelude_bosh.bash

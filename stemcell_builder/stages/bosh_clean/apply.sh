@@ -13,6 +13,9 @@ rm -vrf $chroot/tmp/*
 
 # ubuntu trusty+ needs /etc/resolv.conf to be a symlink, so delete contents
 # instead of removing the file to preserve the link
+## If this is specific to ubuntu, then it should be in an ubuntu stage.
+## Also, I don't know about that...http://manpages.ubuntu.com/manpages/trusty/man8/resolvconf.8.html
+### http://manpages.ubuntu.com/manpages/trusty/man5/resolvconf.conf.5.html
 cat /dev/null > $chroot/etc/resolv.conf
 
 

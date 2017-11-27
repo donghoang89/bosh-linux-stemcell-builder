@@ -64,6 +64,7 @@ function add_on_exit {
     on_exit_items=("$*")
     trap on_exit EXIT
   else
+    # prepend argument to list of on exit items.
     on_exit_items=("$*" "${on_exit_items[@]}")
   fi
 }

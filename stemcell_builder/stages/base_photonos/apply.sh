@@ -66,11 +66,3 @@ run_in_chroot ${chroot} "systemctl disable systemd-networkd"
 run_in_chroot ${chroot} "systemctl enable runit"
 run_in_chroot ${chroot} "systemctl enable NetworkManager"
 
-#Adding system-release file as Specinfra ruby gem can identify PhotonOS as RPM Based Linux Distro
-run_in_chroot ${chroot} "touch /etc/system-release"
-kernelver=$( ls $chroot/lib/modules )
-run_in_chroot ${chroot} "dracut --force --kver ${kernelver}"
-
-
-
-

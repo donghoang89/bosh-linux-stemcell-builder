@@ -59,6 +59,7 @@ cat > $chroot/var/vcap/bosh/bin/bosh-start-logging-and-auditing <<BASH
 BASH
 
 # Configure go agent specifically for warden
+## This is inconsistent with other infrastructures, which have a separate stage.
 cat > $chroot/var/vcap/bosh/agent.json <<JSON
 {
   "Platform": {

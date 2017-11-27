@@ -9,12 +9,17 @@ disk_image=${work}/${stemcell_image_name}
 image_mount_point=${work}/mnt
 
 ## unmap the loop device in case it's already mapped
+### These lines have been commented out since 2015, as part of cloudfoundry/bosh:6e4dd3ddd8fcc0262a3028d71b9a3290936f3dc3
+### Seems like they could be removed.
 #umount ${image_mount_point}/proc || true
 #umount ${image_mount_point}/sys || true
 #umount ${image_mount_point} || true
 #losetup -j ${disk_image} | cut -d ':' -f 1 | xargs --no-run-if-empty losetup -d
 kpartx -dv ${disk_image}
 
+## This comment was added in 2015 as part of cloudfoundry/bosh:f84f4236f465827441387cbe8351fa600838984e
+## If we're concerend about the builder not unmapping loopback devices, we should modify
+## the actual code to check/remove mapped loopback devices BEFORE building starts.
 # note: if the above kpartx command fails, it's probably because the loopback device needs to be unmapped.
 # in that case, try this: sudo dmsetup remove loop0p1
 
@@ -53,6 +58,7 @@ if ! is_ppc64le; then
   random_password=$(tr -dc A-Za-z0-9_ < /dev/urandom | head -c 16)
 
   # Install bootloader
+  ## This is busted on xenial, and probably elsewhere. we can't rely on this filepath.
   if [ -x ${image_mount_point}/usr/sbin/grub2-install ]; then # GRUB 2
 
     # GRUB 2 needs to operate on the loopback block device for the whole FS image, so we map it into the chroot environment
@@ -205,6 +211,7 @@ fi
 
 if [ -f ${image_mount_point}/etc/debian_version ] # Ubuntu
 
+## why etc default grub on ppc? does this even work?
 then
   if is_ppc64le; then
     run_in_chroot ${image_mount_point} "
@@ -282,6 +289,8 @@ fi
 
 run_in_chroot ${image_mount_point} "rm -f /boot/grub/menu.lst"
 
+## Could we modify/overwrite menu.lst instead of symlinking? What is the benefit
+## of symlinking?
 if is_ppc64le; then
   run_in_chroot ${image_mount_point} "touch /boot/grub/menu.lst"
 else

@@ -89,4 +89,5 @@ cp $assets_dir/rsyslog.d/10-auth_agent_forwarder.conf $chroot/etc/rsyslog.d/10-a
 
 # this directory is utilized by the agent/init/create-env
 # https://github.com/cloudfoundry/bosh-agent/blob/1a6b1e11acd941e65c4f4155c22ff9a8f76098f9/micro/https_handler.go#L119
+## TODO: is this still true?
 mkdir -p $chroot/$bosh_dir/../micro_bosh/data/cache

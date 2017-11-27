@@ -8,6 +8,8 @@ source $base_dir/lib/prelude_apply.bash
 chmod 0600 $chroot/etc/ssh/sshd_config
 
 # protect against as-shipped sshd_config that has no newline at end
+## Couldn't this be done as a file movement rather than sed replaces?
+## What are the contents of the unmodified sshd config?
 echo "" >> $chroot/etc/ssh/sshd_config
 
 sed "/^ *UseDNS/d" -i $chroot/etc/ssh/sshd_config

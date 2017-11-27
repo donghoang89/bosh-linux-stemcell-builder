@@ -9,6 +9,8 @@ source $base_dir/lib/prelude_apply.bash
   source $base_dir/lib/prelude_apply.bash
   source $base_dir/lib/prelude_bosh.bash
 
+## Feels like there might be better flags to pass to the dpkg command.
+## Do we want all of the columns that -l provides?
 if [ "${stemcell_operating_system}" == "ubuntu" ]; then
   # Create list of installed packages
   run_in_bosh_chroot $chroot "dpkg -l > stemcell_dpkg_l.out"

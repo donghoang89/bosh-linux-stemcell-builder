@@ -12,6 +12,7 @@ if [ "${stemcell_operating_system}" == "ubuntu" -o "${stemcell_operating_system_
 fi
 
 # this stuff is required for all systems based on the Linux 3.x kernel
+## Neither trusty nor xenial use the 3.x kernel, so they shouldn't need to be included here.
 if [ "${stemcell_operating_system_version}" == "trusty" -o "${stemcell_operating_system_version}" == "7" -o "${stemcell_operating_system}" == "photonos" -o "${stemcell_operating_system}" ==  "opensuse" -o "${stemcell_operating_system_version}" == "xenial"  ]; then
   cp $dir/assets/60-bosh-sysctl-neigh-fix.conf $chroot/etc/sysctl.d
   chmod 0644 $chroot/etc/sysctl.d/60-bosh-sysctl-neigh-fix.conf

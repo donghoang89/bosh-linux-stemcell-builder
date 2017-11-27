@@ -5,6 +5,7 @@ set -e
 base_dir=$(readlink -nf $(dirname $0)/../..)
 source $base_dir/lib/prelude_apply.bash
 
+## This is assuming a lot about which users will be there. The shadow lockdown tests will keep us safe, but...
 if [ $(get_os_type) == "opensuse" ] ; then
   run_in_chroot $chroot "
     for i in bin daemon lp news uucp games man ftp syslog nobody; do
