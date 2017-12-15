@@ -1,4 +1,3 @@
-require 'bosh/core/shell'
 require 'bosh/stemcell/builder_options'
 require 'bosh/stemcell/stemcell'
 require 'forwardable'
@@ -21,13 +20,13 @@ module Bosh::Stemcell
         version: version,
         os_image_tarball: os_image_tarball_path,
       )
-      @shell = Bosh::Core::Shell.new
+      @shell = Bosh::Stemcell::Shell.new
     end
 
     attr_reader :version
 
     def prepare_build
-      if (ENV['resume_from'] == NIL)
+      if (ENV['resume_from'].nil?)
         sanitize
         prepare_build_path
       end

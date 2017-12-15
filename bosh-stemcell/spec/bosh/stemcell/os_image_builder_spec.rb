@@ -16,11 +16,11 @@ describe Bosh::Stemcell::OsImageBuilder do
   let(:environment) { instance_double('Bosh::Stemcell::BuildEnvironment', prepare_build: nil, chroot_dir: '/chroot') }
   let(:collection) { instance_double('Bosh::Stemcell::StageCollection', operating_system_stages: nil) }
   let(:runner) { instance_double('Bosh::Stemcell::StageRunner', configure_and_apply: nil) }
-  let(:shell) { instance_double('Bosh::Core::Shell', run: nil) }
+  let(:shell) { instance_double('Bosh::Stemcell::Shell', run: nil) }
 
   describe '#build' do
     before do
-      allow(Bosh::Core::Shell).to receive(:new).and_return(shell)
+      allow(Bosh::Stemcell::Shell).to receive(:new).and_return(shell)
     end
 
     it 'prepares the build environment' do
