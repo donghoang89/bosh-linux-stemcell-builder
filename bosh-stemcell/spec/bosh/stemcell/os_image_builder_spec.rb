@@ -36,7 +36,7 @@ describe Bosh::Stemcell::OsImageBuilder do
     end
 
     it 'tars up the chroot dir' do
-      expect(shell).to receive(:run).with("sudo tar -cz -f /chroot -C /some/os_image_path.tgz .")
+      expect(shell).to receive(:run).with("sudo tar -cz -f /some/os_image_path.tgz -C /chroot .")
 
       builder.build('/some/os_image_path.tgz')
     end

@@ -1,5 +1,6 @@
 require 'bosh/stemcell/builder_options'
 require 'bosh/stemcell/stemcell'
+require 'bosh/stemcell/shell'
 require 'forwardable'
 
 module Bosh::Stemcell

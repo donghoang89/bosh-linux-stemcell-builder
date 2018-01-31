@@ -11,7 +11,7 @@ module Bosh::Stemcell
       @runner.configure_and_apply(@collection.operating_system_stages, ENV['resume_from'])
 
       shell = Bosh::Stemcell::Shell.new
-      shell.run("sudo tar -cz -f #{@environment.chroot_dir} -C #{os_image_path} .")
+      shell.run("sudo tar -cz -f #{os_image_path} -C #{@environment.chroot_dir} .")
     end
   end
 end
